@@ -3,11 +3,12 @@
 class App {
     public $introducao;
     public $pastaConfig;
+    public $pastaController;
     
 
     public function __construct() {
         $this->introducao = "
-            Diretorio responsável por conter pastas da
+            Diretório responsável por conter pastas da
             nossa aplicação Web.
         ";
     }
@@ -15,7 +16,7 @@ class App {
     public function getPastaConfig() {
         $this->pastaConfig = "
             Pasta responsável por conter as configurações
-            do site, é nela que iremos adiconar os funções
+            do site, é nela que iremos adicionar os funções
             e classe no autoload, caminhos de urls, definir
             baseURL e informações do Banco de Dados(DB).
         ";
@@ -40,8 +41,19 @@ class App {
             $config_base_url = "
             Como o próprio nome sugere, é a url base que será 
             apresentado o site. Quando for em produção, devemos
-            alterar para o caminho do nosso dominio.
+            alterar para o caminho do nosso domínio.
         ";
+        }
+        function database() {
+            $db_default = "
+                Esse Array é responsável por definir as configurações
+                do nosso Banco de Dados, é nele que iremos adicionar:
+                    -> hostname;
+                    -> username;
+                    -> password;
+                    -> database;
+                    -> etc...
+            ";
         }
         function routes() {
             $introducao = "
@@ -52,5 +64,11 @@ class App {
                 quando o usuário entrar na página.
             ";
         }
+    }
+
+    public function getPastaController() {
+        $this->pastaController = "
+            Pasta responsável por conter o celebro 
+        ";
     }
 }
