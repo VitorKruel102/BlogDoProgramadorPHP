@@ -31,6 +31,10 @@ class App {
                  -> Utiliza apenas quando essas funcionalidade sejam
                     utilizadas em mais de duas páginas da sua aplicação.
             ";
+            $helper = "
+                Podemos deixar como padrão três helpers que normalmente 
+                são utilizados em uma aplicação(url, form, html);
+            ";
         }
         function config() { 
             $config_base_url = "
