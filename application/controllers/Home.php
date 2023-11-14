@@ -6,10 +6,11 @@ class Home extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 
+		$this->load->helper('funcoes');
 		$this->load->model('categorias_model');
 		$this->categories = $this->categorias_model->list_categories();
 	}
-	
+
 	/**
 	 * Function index
 	 *

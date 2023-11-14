@@ -21,14 +21,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="list-unstyled">
-                        <li><a href="#">Category Name</a>
-                        </li>
-                        <li><a href="#">Category Name</a>
-                        </li>
-                        <li><a href="#">Category Name</a>
-                        </li>
-                        <li><a href="#">Category Name</a>
-                        </li>
+                        <?php foreach ($categories as $categorie): ?>
+                            <li>
+                                <a href="#"><?= $categorie->titulo ?></a>
+                            </li>
+                        <?php endforeach ?>
                     </ul>
                 </div>
             </div>

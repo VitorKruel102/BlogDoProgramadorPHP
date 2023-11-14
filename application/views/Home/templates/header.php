@@ -17,10 +17,13 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorias <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                    <li><a href="#">Categoria 1</a></li>
-                    <li><a href="#">Categoria 2</a></li>
-                    <li><a href="#">Categoria 3</a></li>
-                    <li><a href="#">Categoria 4</a></li>
+                        <?php foreach($categories as $categorie): ?>
+                            <li>
+                                <a href="<?= base_url("categoria/$categorie->id/".snake_case($categorie->titulo)) ?>">
+                                    <?= $categorie->titulo ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
                     </ul>
                 </li>
                 <li>
