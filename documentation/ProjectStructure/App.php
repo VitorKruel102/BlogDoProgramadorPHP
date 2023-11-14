@@ -106,5 +106,29 @@ class App {
             Sintaxa:
                 $this->db->limit(4); == Retorna apenas 4 registro do DB
         ';
+        $db_from = '
+            Utilizamos esse método para indicar qual tabela estamos realizando a query
+            no Banco de Dados.
+            Sintaxe:
+                $this->db->from("animais");
+
+            Com isso, no método get(), podemos deixa-lo vazio, pois esse método já está
+            indicando qual a tabela.
+        ';
+        $db_select = '
+            Utilizamos esse método para indicar quais as colunas que queremos selecionar
+            Sintaxe:
+                $this->db->select("usuario.id, usuario.nome, usuario.email");
+        ';
+        $db_join = '
+            Utilizamos esse método para para realizar um Join(junção) entre duas tabelas
+            no nosso banco de dados:
+            Sintaxe: 
+                $this->db->select(
+                    "usuario.id as idautor, usuario.nome, postagens.user, postagens.data"
+                );
+                $this->db->from("postagens");
+                $this->db->join("usuario", "usuario.id = postagens.user");
+        ';
     }
 }
