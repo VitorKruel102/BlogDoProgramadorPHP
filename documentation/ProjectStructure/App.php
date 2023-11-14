@@ -19,6 +19,19 @@ class App {
             e classe no autoload, caminhos de urls, definir
             baseURL e informações do Banco de Dados(DB).
         ";
+        function autoload() {
+            $introducao = "
+                Normalmente em uma aplicação Web utilizando o
+                CodeIgniter, iremos utilizar funções ou classes
+                padrões do Framework, para não precisar adicionar
+                o load dessas funcionalidades, podemos adiciona-los
+                nessa pasta para sempre estar carregado em todas as
+                pastas do projeto. 
+                RECOMENDAÇÃO:
+                 -> Utiliza apenas quando essas funcionalidade sejam
+                    utilizadas em mais de duas páginas da sua aplicação.
+            ";
+        }
         function config() { 
             $config_base_url = "
             Como o próprio nome sugere, é a url base que será 
