@@ -18,7 +18,7 @@
                 </p>
                 <p>
                     <span class="glyphicon glyphicon-time"></span> 
-                    Postado em <?= $post->data ?>
+                    Postado: <?= date_format_string($post->data) ?>
                 </p>
                 <hr>
                 <img class="img-responsive" src="http://placehold.it/900x300" alt="">
