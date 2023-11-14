@@ -19,10 +19,21 @@ class App {
             e classe no autoload, caminhos de urls, definir
             baseURL e informações do Banco de Dados(DB).
         ";
-        $base_url = "
+        function config() { 
+            $config_base_url = "
             Como o próprio nome sugere, é a url base que será 
             apresentado o site. Quando for em produção, devemos
             alterar para o caminho do nosso dominio.
         ";
+        }
+        function routes() {
+            $introducao = "
+                Pasta responsável por adicionar as rotas do nosso site
+            ";
+            $default_controller = "
+                Definimos o controller padrão que será acessado
+                quando o usuário entrar na página.
+            ";
+        }
     }
 }
