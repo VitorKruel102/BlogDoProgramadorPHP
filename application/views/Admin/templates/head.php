@@ -10,14 +10,14 @@
         <title>Painel Administrativo</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="<?=base_url('assests/Admin/css/bootstrap.min.css')?>" rel="stylesheet">
+        <link href="<?=base_url('assets/Admin/css/bootstrap.min.css')?>" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="<?=base_url('assests/Admin/css/sb-admin-2.min.css')?>" rel="stylesheet">
+        <link href="<?=base_url('assets/Admin/css/sb-admin-2.min.css')?>" rel="stylesheet">
 
         <!-- Custom Fonts -->
         <link 
-            href="<?=base_url('assests/Admin/css/font-awesome/css/font-awesome.min.css')?>" 
+            href="<?=base_url('assets/Admin/css/font-awesome/css/font-awesome.min.css')?>" 
             rel="stylesheet" 
             type="text/css"
         >

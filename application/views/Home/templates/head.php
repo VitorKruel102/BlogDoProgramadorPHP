@@ -10,14 +10,14 @@
         <title>Blog Home</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="<?=base_url('assests/Home/css/bootstrap.min.css')?>" rel="stylesheet">
+        <link href="<?=base_url('assets/Home/css/bootstrap.min.css')?>" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="<?=base_url('assests/Home/css/blog.min.css')?>" rel="stylesheet">
+        <link href="<?=base_url('assets/Home/css/blog.min.css')?>" rel="stylesheet">
 
         <!-- Custom Fonts -->
         <link 
-            href="<?=base_url('assests/Home/css/font-awesome/css/font-awesome.min.css')?>" 
+            href="<?=base_url('assets/Home/css/font-awesome/css/font-awesome.min.css')?>" 
             rel="stylesheet" 
             type="text/css"
         >

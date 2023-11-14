@@ -480,7 +480,7 @@ $config['compress_output'] = FALSE;
 /*
 |--------------------------------------------------------------------------
 | Master Time Reference
-|--------------------------------------------------------------------------
+|-----------------------------------f---------------------------------------
 |
 | Options are 'local' or any PHP supported timezone. This preference tells
 | the system whether to use your server's local time as the master 'now'
