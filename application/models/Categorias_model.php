@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Categorias_model extends CI_Model {
     // DB fields
     public $id;
-    public $title;
+    public $titulo;
 
     public function __construct() {
         parent::__construct();
