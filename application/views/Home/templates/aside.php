@@ -21,9 +21,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="list-unstyled">
-                        <?php foreach ($categories as $categorie): ?>
+                        <?php foreach ($categories as $category): ?>
                             <li>
-                                <a href="#"><?= $categorie->titulo ?></a>
+                                <a href="<?= base_url("categoria/$category->id/".snake_case($category->titulo)) ?>"><?= $category->titulo ?></a>
                             </li>
                         <?php endforeach ?>
                     </ul>

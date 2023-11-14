@@ -7,8 +7,8 @@ class Home extends CI_Controller {
 		parent::__construct();
 
 		$this->load->helper('funcoes');
-		$this->load->model('Home/categorias_model');
-		$this->categories = $this->categorias_model->list_categories();
+		$this->load->model('Home/categories_model');
+		$this->categories = $this->categories_model->list_categories();
 	}
 
 	/**
@@ -19,11 +19,13 @@ class Home extends CI_Controller {
 	 * @return void
 	 */
 	public function index() {
-		$this->load->model('Home/publicacoes_model');
+		$this->load->model('Home/publications_model');
 
 		$data = [
+			'title'=> 'Página Inicial',
+			'caption' => 'Postagens Recentes',
 			'categories'=> $this->categories,
-			'posts'=> $this->publicacoes_model->featured_post(),
+			'posts'=> $this->publications_model->featured_post(),
 		];
 
 		$this->load->view('Home/templates/head', $data);

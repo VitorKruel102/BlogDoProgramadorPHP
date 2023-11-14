@@ -7,7 +7,7 @@
         <meta name="description" content="Website design for a programmer's blog in PHP">
         <meta name="author" content="Vitor Kruel">
 
-        <title>Blog Home</title>
+        <title><?= $title ?> - <?= $caption ?></title>
 
         <!-- Bootstrap Core CSS -->
         <link href="<?=base_url('assets/Home/css/bootstrap.min.css')?>" rel="stylesheet">
