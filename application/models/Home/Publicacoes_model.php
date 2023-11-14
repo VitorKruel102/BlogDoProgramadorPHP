@@ -18,9 +18,10 @@ class Publicacoes_model extends CI_Model {
     /**
      * Function featured_post
      *
-     * This function returns the latest 4 posts, ordered by date in descending order.
+     * This function returns information about the latest 4 featured posts,
+     * including author details, title, subtitle, user, date, and image.
      *
-     * @return array Returns an array containing the featured posts from the 'postagens' table.
+     * @return array Returns an array of objects containing information about the featured posts.
      */
     public function featured_post() {
         $this->db->select(
