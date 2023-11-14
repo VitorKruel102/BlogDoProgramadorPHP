@@ -19,8 +19,11 @@ class Home extends CI_Controller {
 	 * @return void
 	 */
 	public function index() {
+		$this->load->model('publicacoes_model');
+
 		$data = [
 			'categories'=> $this->categories,
+			'posts'=> $this->publicacoes_model->featured_post(),
 		];
 
 		$this->load->view('Home/templates/head', $data);
