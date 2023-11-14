@@ -4,6 +4,7 @@ class App {
     public $introducao;
     public $pastaConfig;
     public $pastaController;
+    public $pastaModels;
     
 
     public function __construct() {
@@ -68,10 +69,38 @@ class App {
             ";
         }
     }
-
     public function getPastaController() {
         $this->pastaController = "
             Pasta responsável por conter o celebro 
         ";
+        $metodo_load = '
+            Utilizado para carregar outras classes ou funções da 
+            nossa aplicação;
+            Sintaxa:
+                $this->load->model("nome_da_classe");
+                $this->load->libraries("nome_da_classe");
+                $this->load->view("Home/templates/head");"
+        ';
+    }
+    public function getPastaModels() {
+        $this->pastaModels = "
+            Pasta responsável por manter as Classe que irão realizar
+            as querys no DB, por padrão, ele estende a class CI_Model.
+        ";
+        $db_order_by = '
+            Utilizamos esse método para ordernar a table no banco de dados,
+            ela possui dois parametros ("Coluna", "ASC || DESC")
+            Sintaxa:
+                $this->db->order_by("coluna1", "ASC"); == CRESCENTE
+                $this->db->order_by("coluna1", "DESC"); == DECRESCENTE
+        ';
+        $db_get_result = '
+            Utilizamos esdes dois métodos para retornar nossa query no DB, 
+            é utilizada para realizar os filtros ou buscas no nosso Bando de 
+            dados.
+            Sintaxa:
+                $this->db->get("animais").result(); == Realiza a query tabela animais
+        ';
+
     }
 }
