@@ -7,7 +7,7 @@ class Home extends CI_Controller {
 		parent::__construct();
 
 		$this->load->helper('funcoes');
-		$this->load->model('categorias_model');
+		$this->load->model('home/categorias_model');
 		$this->categories = $this->categorias_model->list_categories();
 	}
 
@@ -19,7 +19,7 @@ class Home extends CI_Controller {
 	 * @return void
 	 */
 	public function index() {
-		$this->load->model('publicacoes_model');
+		$this->load->model('home/publicacoes_model');
 
 		$data = [
 			'categories'=> $this->categories,
