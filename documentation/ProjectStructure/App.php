@@ -36,6 +36,9 @@ class App {
                 Podemos deixar como padrão três helpers que normalmente 
                 são utilizados em uma aplicação(url, form, html);
             ";
+            $libraries = "
+                Podemos deixar como padrão: ('database')
+            ";
         }
         function config() { 
             $config_base_url = "
