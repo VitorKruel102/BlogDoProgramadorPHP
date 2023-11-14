@@ -95,12 +95,16 @@ class App {
                 $this->db->order_by("coluna1", "DESC"); == DECRESCENTE
         ';
         $db_get_result = '
-            Utilizamos esdes dois métodos para retornar nossa query no DB, 
+            Utilizamos esses dois métodos para retornar nossa query no DB, 
             é utilizada para realizar os filtros ou buscas no nosso Bando de 
             dados.
             Sintaxa:
                 $this->db->get("animais").result(); == Realiza a query tabela animais
         ';
-
+        $db_limit = '
+            Utilizamos esse método para retornar apenas X registros no banco de dados
+            Sintaxa:
+                $this->db->limit(4); == Retorna apenas 4 registro do DB
+        ';
     }
 }
