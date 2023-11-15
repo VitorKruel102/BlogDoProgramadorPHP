@@ -54,3 +54,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['blogdoprogramadorphp/categoria/(:num)/(:any)'] = 'categories/index/$1/$2';
+$route['blogdoprogramadorphp/postagem/(:num)/(:any)'] = 'publications/index/$1/$2';

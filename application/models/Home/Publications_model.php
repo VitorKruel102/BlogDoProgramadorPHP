@@ -70,4 +70,32 @@ class Publications_model extends CI_Model {
 
         return $this->db->get()->result();
     }
+
+    /**
+     * Get details of a publication by ID.
+     *
+     * This method queries the database to retrieve details of a publication
+     * based on the provided ID.
+     *
+     * @param int $id The ID of the desired publication.
+     * @return array The detailed information of the publication as an array of objects.
+    */
+    public function get_publication($id) {
+        $this->db->select(
+            'usuario.id as idautor, '.
+            'usuario.nome, '.
+            'postagens.id, '.
+            'postagens.titulo ,'.
+            'postagens.subtitulo, '.
+            'postagens.user, '.
+            'postagens.data, '.
+            'postagens.img, '.
+            'postagens.categoria, '.
+            'postagens.conteudo, '
+        );
+        $this->db->join('usuario', 'usuario.id = postagens.user');
+        $this->db->where("postagens.id = $id");
+
+        return $this->db->get('postagens')->result();
+    }
 }
