@@ -23,4 +23,10 @@ class Categories_model extends CI_Model {
 
         return $this->db->get('categoria')->result();
     }
+
+    public function get_category($id) {
+        $this->db->where("id = $id");
+
+        return $this->db->get("categoria")->result();
+    }
 }
