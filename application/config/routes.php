@@ -62,3 +62,4 @@ $route['blogdoprogramadorphp/admin/categoria'] = 'admin/category/index';
 $route['blogdoprogramadorphp/admin/categoria/alterar/(:any)'] = 'admin/category/change/$1';
 $route['blogdoprogramadorphp/admin/categoria/excluir/(:any)'] = 'admin/category/exclude/$1';
 $route['blogdoprogramadorphp/admin/login'] = 'admin/users/pag_login';
+$route['blogdoprogramadorphp/admin/usuarios/logout'] = 'admin/users/logout';

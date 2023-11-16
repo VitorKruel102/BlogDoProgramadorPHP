@@ -33,7 +33,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="<?= base_url('admin/usuarios/logout') ?>">
                             <i class="fa fa-sign-out fa-fw"></i> 
                             Sair do Sistema
                         </a>

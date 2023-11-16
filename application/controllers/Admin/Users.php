@@ -84,4 +84,22 @@ class Users extends CI_Controller {
             }
         }
     }
+
+    /**
+     * Logs out the user, ending the session.
+     *
+     * This method ends the user session by setting session data to null
+     * and the login status to false. It then redirects to the admin panel login page.
+     *
+     * @return void
+    */
+    public function logout() {
+        $data = [
+            'user_logged'=> NULL,
+            'logged'=> FALSE,
+        ];
+        $this->session->set_userdata($data);
+
+        redirect(base_url('admin/login'));
+    }
 }
