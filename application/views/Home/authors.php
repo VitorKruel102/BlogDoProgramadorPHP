@@ -9,7 +9,7 @@
             <!-- Posts -->
             <?php foreach($authors as $author): ?>
                 <div class="col-md-4">
-                    <img 
+                    <img
                         class="img-responsive img-circle" 
                         src="http://placehold.it/200x200" 
                         alt="imagem autor"
@@ -18,10 +18,10 @@
                 <div class="col-md-8 ">
                     <h2>
                         <?=$author->nome?>
-                    </h2> 
+                    </h2>
                     <hr>
-                    <p> 
-                        <?=$author->historico?> 
+                    <p>
+                        <?=$author->historico?>
                     </p>
                     <hr>
                 </div>

@@ -24,7 +24,7 @@ class Authors_model extends CI_Model {
      * @return array The information about the author as an array of
      * objects.
     */
-    public function get_authors($id) {
+    public function get_author($id) {
         $this->db->select(
             'id, '.
             'nome, '.

@@ -10,32 +10,25 @@ class About extends CI_Controller {
         $this->categories = $this->categories_model->list_categories();
     }
 
-    public function index($id, $slug = null) {
-        $this->load->model('Home/publications_model');
-        $this->category_title = $this->categories_model->get_category($id);
+    /**
+     * Authors page.
+     *
+     * This method loads author data based on the provided ID and displays
+     * the dedicated authors' page. The loaded data includes title, caption,
+     * available categories, and details of specific authors.
+     *
+     * @param int $id The ID of the authors to be displayed.
+     * @param string|null $slug The optional slug of the authors' page.
+     * @return void
+    */
+    public function authors($id, $slug = null) { 
+        $this->load->model('Home/authors_model');
 
         $data = [
-            'title'=> 'Categorias',
-            'caption'=> $this->category_title,
-            'categories'=> $this->categories,
-            'posts'=>  $this->publications_model->category_pub($id),
-        ];
-
-        $this->load->view('Home/templates/head', $data);
-        $this->load->view('Home/templates/header');
-        $this->load->view('Home/category');
-        $this->load->view('Home/templates/aside');
-        $this->load->view('Home/templates/footer');
-        $this->load->view('Home/templates/html-footer');
-    }
-
-    public function authors($id, $slug = null) { 
-        $this->load->model('authors_model');
-
-        $data = [ 
             'title'=> 'Sobre nós',
-            'caption'=> 'Autores',
-            'authors'=> $this->authors_model->get_authors($id),
+            'caption'=> 'Autor',
+            'categories'=> $this->categories,
+            'authors'=> $this->authors_model->get_author($id),
         ];
 
         $this->load->view('Home/templates/head', $data);
