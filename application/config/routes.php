@@ -53,10 +53,13 @@ $route['default_controller'] = 'Home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+// Home
 $route['blogdoprogramadorphp/categoria/(:num)/(:any)'] = 'categories/index/$1/$2';
 $route['blogdoprogramadorphp/postagem/(:num)/(:any)'] = 'publications/index/$1/$2';
 $route['blogdoprogramadorphp/autor/(:num)/(:any)'] = 'about/author/$1/$2';
 $route['blogdoprogramadorphp/sobrenos'] = 'about/index';
+
+// Admin
 $route['blogdoprogramadorphp/admin'] = 'admin/home/index';
 $route['blogdoprogramadorphp/admin/categoria'] = 'admin/category/index';
 $route['blogdoprogramadorphp/admin/categoria/alterar/(:any)'] = 'admin/category/change/$1';
