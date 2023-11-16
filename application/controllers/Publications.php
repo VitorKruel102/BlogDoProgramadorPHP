@@ -6,7 +6,7 @@ class Publications extends CI_Controller {
         parent::__construct();
 
         $this->load->helper('funcoes');
-        $this->load->model('Home/categories_model');
+        $this->load->model('categories_model');
         $this->categories = $this->categories_model->list_categories();
     }
 
