@@ -54,4 +54,11 @@ class Authors_model extends CI_Model {
 
         return $this->db->get('usuario')->result();
     }
+
+    public function is_user($user, $password) {
+        $this->db->where("user", $user);
+        $this->db->where("senha", $password);
+
+        return $this->db->get("usuario")->result(); 
+    }
 }

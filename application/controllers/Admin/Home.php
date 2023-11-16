@@ -6,6 +6,14 @@ class Home extends CI_Controller {
         parent::__construct();
     }
 
+    /**
+     * Displays the home page of the admin panel.
+     *
+     * This method loads the home page of the admin panel with information
+     * such as title and caption. The information is passed to the corresponding views.
+     *
+     * @return void
+    */
     public function index() {
         $data = [
             'title'=> 'Painel Administrativo',

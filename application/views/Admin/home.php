@@ -1,5 +1,5 @@
 <div id="page-wrapper">
-    <br>
+    <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -9,7 +9,9 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2>Bem-vindo ao Sistema! </h2>
+                            <h2>
+                                Bem-vindo ao Sistema! <?= $this->session->userdata("user_logged")->nome ?>
+                            </h2>
                         </div>
                     </div>
                     <!-- /.row (nested) -->
