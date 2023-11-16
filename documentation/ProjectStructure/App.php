@@ -137,5 +137,13 @@ class App {
                 $this->db->from("postagens");
                 $this->db->join("usuario", "usuario.id = postagens.user");
         ';
+        $db_update = '
+                Utilizamos esse método para atualizar os registros da nossa tabelas.
+                Sintaxe: 
+                    $data["titulo"] = $titulo;
+                    $this->db->where("md5(id)", $id);
+            
+                    return $this->db->update("categoria", $data);
+        ';
     }
 }

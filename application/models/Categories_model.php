@@ -86,6 +86,18 @@ class Categories_model extends CI_Model {
         return $this->db->get("categoria")->result()[0];
     }
 
+    /**
+     * Edits the title of a category in the database.
+     *
+     * This method receives the ID of the category to be edited and the new title
+     * as parameters, converts the ID to MD5 for security purposes, uses both as
+     * conditions to find the category in the 'categoria' table, and updates the
+     * title of the category with the new value.
+     *
+     * @param string $id The ID of the category to be edited (MD5 hash).
+     * @param string $titulo The new title of the category.
+     * @return bool Returns true if the edit is successful, otherwise, false.
+    */
     public function edit_category($id, $titulo) {
         $data['titulo'] = $titulo;
         $this->db->where("md5(id)", $id);
