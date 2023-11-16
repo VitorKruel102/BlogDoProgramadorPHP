@@ -81,6 +81,13 @@ class App {
                 $this->load->libraries("nome_da_classe");
                 $this->load->view("Home/templates/head");"
         ';
+        $metodo_input = '
+            Ele ira retornar todos os campos de input, precisamos ainda
+            dizer qual tipo de input estamos interessado.
+            Sintaxe:
+                $this->titulo = $this->input->post("id_titulo");
+                $this->nome = $this->input->get("id_nome");
+        ';
     }
     public function getPastaModels() {
         $this->pastaModels = "

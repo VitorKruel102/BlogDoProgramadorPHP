@@ -38,4 +38,19 @@ class Categories_model extends CI_Model {
 
         return $this->db->get("categoria")->result();
     }
+
+    /**
+     * Add a new category to the database.
+     *
+     * This method receives the title of the new category as a parameter and inserts
+     * the data into the database in the 'categoria' table.
+     *
+     * @param string $titulo The title of the new category to be added.
+     * @return bool Returns true if the insertion is successful, otherwise, false.
+    */
+    public function add_category($titulo) {
+        $data['titulo'] = $titulo;
+
+        return $this->db->insert('categoria', $data);
+    }
 }
