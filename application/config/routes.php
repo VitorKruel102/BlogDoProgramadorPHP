@@ -57,3 +57,4 @@ $route['blogdoprogramadorphp/categoria/(:num)/(:any)'] = 'categories/index/$1/$2
 $route['blogdoprogramadorphp/postagem/(:num)/(:any)'] = 'publications/index/$1/$2';
 $route['blogdoprogramadorphp/autor/(:num)/(:any)'] = 'about/author/$1/$2';
 $route['blogdoprogramadorphp/sobrenos'] = 'about/index';
+$route['blogdoprogramadorphp/admin'] = 'admin/home/index';
