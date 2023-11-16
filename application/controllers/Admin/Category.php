@@ -29,9 +29,9 @@ class Category extends CI_Controller {
         ];
 
         $this->load->view('Admin/templates/head', $data);
-        $this->load->view('Admin/templates/template', $data);
-        $this->load->view('Admin/category', $data);
-        $this->load->view('Admin/templates/footer', $data);
+        $this->load->view('Admin/templates/template');
+        $this->load->view('Admin/category');
+        $this->load->view('Admin/templates/footer');
     }
 
     /**
@@ -82,6 +82,63 @@ class Category extends CI_Controller {
             redirect(base_url('admin/categoria'));
         } else {
             echo 'Houve um erro no sistema!';
+        }
+    }
+
+    /**
+     * Displays the category editing page in the admin panel.
+     *
+     * This method loads the 'table' library from CodeIgniter and displays the
+     * category editing page in the admin panel. The loaded data includes title,
+     * caption, and information about the category to be edited.
+     *
+     * @param string $id The ID of the category to be edited (MD5 hash).
+     * @return void
+    */
+    public function change($id) {
+        $this->load->library('table');
+
+        $data = [
+            'title'=> 'Painel Administrativo',
+            'caption'=> 'Categoria',
+            'category'=> $this->categories_model->get_category_edit($id),
+        ];
+
+        $this->load->view('Admin/templates/head', $data);
+        $this->load->view('Admin/templates/template');
+        $this->load->view('Admin/category-edit');
+        $this->load->view('Admin/templates/footer');
+    }
+
+    /**
+     * Saves the changes made to a category after editing.
+     *
+     * This method performs validation of the form data, specifically for the
+     * 'Nome da Categoria' field. If the validation is successful, it saves the
+     * changes to the database and redirects to the categories page in the admin
+     * panel. If the validation fails, it redirects back to the main admin panel page.
+     *
+     * @param string $id The ID of the category to be edited (MD5 hash).
+     * @return void
+    */
+    public function save_edit($id) {
+        $id_category = 'text-categoria';
+        $field_name = 'Nome da Categoria';
+        $validator = 'required|min_length[3]|is_unique[categoria.titulo]';
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules($id_category, $field_name, $validator);
+
+        if (!$this->form_validation->run()) {
+            $this->index();
+        } else {
+            $titulo = $this->input->post($id_category);
+
+            if ($this->categories_model->edit_category($id, $titulo)){
+                redirect(base_url('admin/categoria'));
+            } else {
+                echo 'Houve um erro no sistema!';
+            }
         }
     }
 }

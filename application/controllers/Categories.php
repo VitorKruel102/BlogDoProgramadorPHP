@@ -19,7 +19,7 @@ class Categories extends CI_Controller {
 	*/
     public function index($id, $slug = null) {
         $this->load->model('Home/publications_model');
-        $this->category_title = $this->categories_model->get_category($id)[0]->titulo;
+        $this->category_title = $this->categories_model->get_category($id)->titulo;
 
         $data = [
             'title'=> 'Categorias',

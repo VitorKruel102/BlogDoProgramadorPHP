@@ -36,7 +36,7 @@ class Categories_model extends CI_Model {
     public function get_category($id) {
         $this->db->where("id = $id");
 
-        return $this->db->get("categoria")->result();
+        return $this->db->get("categoria")->result()[0];
     }
 
     /**
@@ -68,5 +68,28 @@ class Categories_model extends CI_Model {
         $this->db->where('md5(id)', $id);
         
         return $this->db->delete("categoria");
+    }
+
+    /**
+     * Get information about a specific category for editing.
+     *
+     * This method receives the ID of the category to be edited as a parameter,
+     * converts it to MD5 for security purposes, and uses it as a condition
+     * to obtain information about the category from the 'categoria' table.
+     *
+     * @param string $id The ID of the category to be edited (MD5 hash).
+     * @return array The information about the category as an array of objects.
+    */
+    public function get_category_edit($id) {
+        $this->db->where("md5(id)", $id);
+
+        return $this->db->get("categoria")->result()[0];
+    }
+
+    public function edit_category($id, $titulo) {
+        $data['titulo'] = $titulo;
+        $this->db->where("md5(id)", $id);
+
+        return $this->db->update('categoria', $data);
     }
 }
