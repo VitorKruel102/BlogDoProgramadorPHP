@@ -55,6 +55,16 @@ class Authors_model extends CI_Model {
         return $this->db->get('usuario')->result();
     }
 
+    /**
+     * Checks if a user with the provided username and password exists in the database.
+     *
+     * This method queries the database to check if there is a user with the provided
+     * username and password. It returns the results of the query.
+     *
+     * @param string $user The username to be checked.
+     * @param string $password The password to be checked.
+     * @return array|null Returns an array with user data if it exists, or null if it doesn't.
+    */
     public function is_user($user, $password) {
         $this->db->where("user", $user);
         $this->db->where("senha", $password);

@@ -37,6 +37,17 @@ class Users extends CI_Controller {
         $this->load->view('Admin/templates/footer', $data);
     }
 
+    /**
+     * Processes the login form and authenticates the user.
+     *
+     * This method validates the username and password fields of the login form.
+     * If the validation is successful, it attempts to authenticate the user
+     * with the provided information. If authentication is successful, it starts
+     * a user session and redirects to the admin panel. If authentication fails,
+     * it redirects back to the login page.
+     *
+     * @return void
+    */
     public function login()  {
         $this->load->library('form_validation');
         $this->load->model('authors_model');
@@ -44,16 +55,8 @@ class Users extends CI_Controller {
         $id_input_user = 'txt-user';
         $id_input_password = 'txt-senha';
 
-        $this->form_validation->set_rules(
-            $id_input_user,
-            'Usuário',
-            'required|min_length[3]'
-        );
-        $this->form_validation->set_rules(
-            $id_input_password,
-            'Senha',
-            'required|min_length[3]'
-        );
+        $this->form_validation->set_rules($id_input_user, 'Usuário', 'required|min_length[3]');
+        $this->form_validation->set_rules($id_input_password, 'Senha', 'required|min_length[3]');
 
         if (!$this->form_validation->run()) {
             $this->pag_login();
@@ -76,9 +79,9 @@ class Users extends CI_Controller {
                     'logged'=> FALSE,
                 ];
                 $this->session->set_userdata($data);
+
                 redirect(base_url('admin/login'));
             }
         }
-    
     }
 }

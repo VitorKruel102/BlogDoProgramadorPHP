@@ -5,6 +5,11 @@ class Category extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        
+        $is_logged = $this->session->userdata('logged');
+        if (!$is_logged) {
+            redirect(base_url('admin/login'));
+        }
 
         $this->load->model('categories_model');
         $this-> categories = $this->categories_model->list_categories();
