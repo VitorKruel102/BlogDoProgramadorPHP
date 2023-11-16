@@ -60,7 +60,7 @@
                                         '<i class="fa fa-refresh fa-fw"></i> Alterar'
                                     );
                                     $excluir = anchor(
-                                        base_url('admin/categoria'), 
+                                        base_url('admin/categoria/excluir/'.md5($category->id)), 
                                         '<i class="fa fa-remove fa-fw"></i> Excluir'
                                     );
                                     $this->table->add_row($nome, $alterar, $excluir);

@@ -53,4 +53,20 @@ class Categories_model extends CI_Model {
 
         return $this->db->insert('categoria', $data);
     }
+
+    /**
+     * Remove a specific category from the database.
+     *
+     * This method receives the ID of the category to be removed as a parameter,
+     * converts it to MD5 for security purposes, and uses it as a condition
+     * for removing the category from the 'categoria' table.
+     *
+     * @param string $id The ID of the category to be removed (MD5 hash).
+     * @return bool Returns true if the removal is successful, otherwise, false.
+    */
+    public function remove_category($id) {
+        $this->db->where('md5(id)', $id);
+        
+        return $this->db->delete("categoria");
+    }
 }

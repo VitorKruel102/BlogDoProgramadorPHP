@@ -65,4 +65,23 @@ class Category extends CI_Controller {
             }
         }
     }
+
+    /**
+     * Removes a specific category from the database.
+     *
+     * This method receives the ID of the category to be removed as a parameter
+     * and attempts to remove it from the database. If the removal is successful,
+     * it redirects to the categories page in the admin panel. If the removal fails,
+     * it displays an error message.
+     *
+     * @param int $id The ID of the category to be removed.
+     * @return void
+    */
+    public function exclude($id) {
+        if ($this->categories_model->remove_category($id)){
+            redirect(base_url('admin/categoria'));
+        } else {
+            echo 'Houve um erro no sistema!';
+        }
+    }
 }
