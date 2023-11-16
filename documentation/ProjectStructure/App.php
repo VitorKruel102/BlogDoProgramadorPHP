@@ -38,15 +38,30 @@ class App {
                 são utilizados em uma aplicação(url, form, html);
             ";
             $libraries = "
-                Podemos deixar como padrão: ('database')
+                Podemos deixar como padrão: ('database', 'session')
             ";
         }
         function config() { 
             $config_base_url = "
-            Como o próprio nome sugere, é a url base que será 
-            apresentado o site. Quando for em produção, devemos
-            alterar para o caminho do nosso domínio.
-        ";
+                Como o próprio nome sugere, é a url base que será 
+                apresentado o site. Quando for em produção, devemos
+                alterar para o caminho do nosso domínio.
+            ";
+            $session = '
+                Utilizamos essas variaveis para controlar o tempo de sessão
+                dos nossos usuários. Precismos adicionalo nas libraries("session") e
+                ajustar as configurações neste arquivo:
+                    $config["sess_driver"] = "database";      --> Informar que será em um Banco de Dados;
+                    $config["sess_expiration"] = 0;           --> Fecha a sessão quando o usuario sair da pagina (0s);
+                    $config["sess_save_path"] = "ci_session"; --> Informar que o nome da tabela no DB;
+                    $config["sess_match_ip"] = TRUE;          --> Para informar o número do IP do usuário;
+
+                Precisamos ter uma estrutura do banco de dados:
+                    id;
+                    ip_address;
+                    timestamp;
+                    data;
+            ';
         }
         function database() {
             $db_default = "
