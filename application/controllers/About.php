@@ -36,17 +36,17 @@ class About extends CI_Controller {
     }
 
     /**
-     * Authors page.
+     * Author page.
      *
      * This method loads author data based on the provided ID and displays
      * the dedicated authors' page. The loaded data includes title, caption,
      * available categories, and details of specific authors.
      *
      * @param int $id The ID of the authors to be displayed.
-     * @param string|null $slug The optional slug of the authors' page.
+     * @param string|null $slug The optional slug of the author' page.
      * @return void
     */
-    public function authors($id, $slug = null) { 
+    public function author($id, $slug = null) { 
         $data = [
             'title'=> 'Sobre nós',
             'caption'=> 'Autor',
