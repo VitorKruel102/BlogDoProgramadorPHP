@@ -35,4 +35,23 @@ class Authors_model extends CI_Model {
 
         return $this->db->get('usuario')->result();
     }
+
+    /**
+     * Get information about all authors.
+     *
+     * This method queries the database to retrieve information about all authors,
+     * including their IDs, names, and images.
+     *
+     * @return array The information about authors as an array of objects.
+    */
+    public function get_authors() {
+        $this->db->select(
+            'id, '.
+            'nome, '.
+            'img, '
+        );
+        $this->db->order_by('nome', 'ASC');
+
+        return $this->db->get('usuario')->result();
+    }
 }

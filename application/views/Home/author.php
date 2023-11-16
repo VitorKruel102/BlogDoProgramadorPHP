@@ -6,7 +6,7 @@
             <h1 class="page-header">
                 <?= $title ?><small> > <?= $caption ?></small>
             </h1>
-            <!-- Posts -->
+            <!-- Author -->
             <?php foreach($authors as $author): ?>
                 <div class="col-md-4">
                     <img

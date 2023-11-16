@@ -6,8 +6,33 @@ class About extends CI_Controller {
         parent::__construct();
 
         $this->load->helper('funcoes');
+        $this->load->model('Home/authors_model');
         $this->load->model('Home/categories_model');
         $this->categories = $this->categories_model->list_categories();
+    }
+
+    
+    /**
+	 * Function index
+	 *
+	 * This method is responsible for loading the necessary views for the About Us page.
+	 *
+	 * @return void
+	*/
+    public function index() {
+        $data = [
+            'title'=> 'Sobre nós',
+            'caption'=> 'Conheça nossa equipe',
+            'categories'=> $this->categories,
+            'authors'=>  $this->authors_model->get_authors(),
+        ];
+
+        $this->load->view('Home/templates/head', $data);
+        $this->load->view('Home/templates/header');
+        $this->load->view('Home/about-us');
+        $this->load->view('Home/templates/aside');
+        $this->load->view('Home/templates/footer');
+        $this->load->view('Home/templates/html-footer');
     }
 
     /**
@@ -22,8 +47,6 @@ class About extends CI_Controller {
      * @return void
     */
     public function authors($id, $slug = null) { 
-        $this->load->model('Home/authors_model');
-
         $data = [
             'title'=> 'Sobre nós',
             'caption'=> 'Autor',
@@ -33,7 +56,7 @@ class About extends CI_Controller {
 
         $this->load->view('Home/templates/head', $data);
         $this->load->view('Home/templates/header');
-        $this->load->view('Home/authors');
+        $this->load->view('Home/author');
         $this->load->view('Home/templates/aside');
         $this->load->view('Home/templates/footer');
         $this->load->view('Home/templates/html-footer');
