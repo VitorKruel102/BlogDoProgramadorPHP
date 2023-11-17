@@ -3,13 +3,13 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <?= "Administrar nova $caption" ?>
+                <?= "Administrar novo $caption" ?>
             </h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <?= "Adicionar nova $caption" ?><small></small>
@@ -17,13 +17,16 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <?= validation_errors('<div class="alert alert-danger">', '</div>') ?>
-                            <?= form_open("admin/publications/insert/".$this->session->userdata('user_logged')->id) ?>
+                        <?= validation_errors('<div class="alert alert-danger">', '</div>') ?>
+                            <?= form_open("admin/publications/save_edit/".md5($publication->id)) ?>
                                 <div class="form-group">
                                     <label id="select-categoria">Categoria</label>
                                     <select id="select-categoria" name="select-categoria" class="form-control">
                                         <?php foreach($categories as $category): ?>
-                                            <option value="<?= $category->id ?>">
+                                            <option 
+                                                value="<?= $category->id ?>"
+                                                <?php if($category->id == $publication->categoria) {echo "selected";}?>
+                                            >
                                                 <?= $category->titulo ?>
                                             </option>
                                         <?php endforeach ?>
@@ -37,7 +40,7 @@
                                         name="text-titulo"
                                         class="form-control" 
                                         placeholder="Digite o titulo do usuário..."
-                                        value="<?= set_value('text-titulo') ?>"
+                                        value="<?= $publication->titulo ?>"
                                     >
                                 </div>
                                 <div class="form-group">
@@ -48,7 +51,7 @@
                                         name="text-subtitulo"
                                         class="form-control" 
                                         placeholder="Digite o subtitulo do usuário..."
-                                        value="<?= set_value('text-subtitulo') ?>"
+                                        value="<?= $publication->subtitulo ?>"
                                     >
                                 </div>
                                 <div class="form-group">
@@ -57,7 +60,7 @@
                                         id="text-conteudo" 
                                         name="text-conteudo"
                                         class="form-control" 
-                                    ><?= set_value('text-conteudo') ?></textarea>
+                                    ><?= $publication->conteudo ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label id='text-data'>Data</label>
@@ -67,11 +70,10 @@
                                         name="text-data"
                                         class="form-control" 
                                         placeholder="Digite o data do usuário..."
-                                        value="<?= set_value('text-data') ?>"
+                                        value="<?= $publication->data ?>"
                                     >
                                 </div>
-
-                                <button type="submit" class="btn btn-default">Cadastrar</button>
+                                <button type="submit" class="btn btn-default">Salvar Alterações</button>
                             <?= form_close()?>
                         </div>
                     </div>
@@ -81,41 +83,55 @@
             </div>
             <!-- /.panel -->
         </div>
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <?= "Alterar $caption existente" ?><small></small>
+                    <?= "Imagem de destaque do $caption" ?><small></small>
                 </div>
                 <div class="panel-body">
+                    <div class="row" style="padding-bottom: 15px;">
+                        <div class="col-lg-3 col-lg-offset-1">
+                            <?php 
+                                if ($publication->img) {
+                                    echo img(
+                                        "assets/Home/img/publication/".md5($publication->id), 
+                                        false, 
+                                        ["style"=> "border-radius: 50%"]
+                                    ); 
+                                } else {
+                                    echo img(
+                                        "assets/Home/img/semFoto2.png",
+                                        false, 
+                                        ["style"=> "border-radius: 50%"]
+                                    );
+                                }
+                            ?>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <?php 
-                                $this->table->set_heading(
-                                    "Foto",
-                                    "Titulo",
-                                    "Data",
-                                    "Alterar",
-                                    "Excluir"
-                                );
-                                foreach ($publications as $publication) {
-                                    $photo = 'Foto Pub';
-                                    $title = $publication->titulo;
-                                    $date = date_format_string($publication->data);
-                                    $change = anchor(
-                                        base_url('admin/publicacao/alterar/'.md5($publication->id)), 
-                                        '<i class="fa fa-refresh fa-fw"></i> Alterar'
-                                    );
-                                    $exclude = anchor(
-                                        base_url('admin/publicacao/excluir/'.md5($publication->id)), 
-                                        '<i class="fa fa-remove fa-fw"></i> Excluir'
-                                    );
-                                    $this->table->add_row($photo, $title, $date, $change, $exclude);
-                                }
-                                $this->table->set_template(array(
-                                    'table_open'=> '<table class="table table-stried">',
-                                ));
-                                echo $this->table->generate();
-                            ?>
+                            <?= form_open_multipart('admin/publication/new_photo/'.md5($publication->id)) ?>
+                                <?= form_hidden('id', md5($publication->id)) ?>
+                                <div class="form-group">
+                                    <?= form_upload(
+                                        array(
+                                            'name'=> 'userfile',
+                                            'id'=> 'userfile',
+                                            'class'=> 'form-control',
+                                        )
+                                    ) ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= form_submit(
+                                        array(
+                                            'name'=> 'btn_adicionar',
+                                            'id'=> 'btn_adicionar',
+                                            'class'=> 'btn btn-default',
+                                            'value'=> 'Adicionar nova imagem',
+                                        )
+                                    ) ?>
+                                </div>
+                            <?= form_close() ?>
                         </div>
                     </div>
                     <!-- /.row (nested) -->

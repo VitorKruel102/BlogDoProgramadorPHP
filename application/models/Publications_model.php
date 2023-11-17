@@ -115,6 +115,57 @@ class Publications_model extends CI_Model {
     }
 
     /**
+     * Retrieves data of a publication for editing.
+     *
+     * This method fetches data from the database for a specific publication,
+     * identified by its encrypted ID (md5). Returns an object containing the
+     * publication data for editing.
+     *
+     * @param string $id The encrypted ID (md5) of the publication.
+     * @return object|null An object containing the publication data for editing or null if not found.
+    */
+    public function get_publication_edit($id) {
+        $this->db->where("md5(id)", $id);
+
+        return $this->db->get("postagens")->result()[0];
+    }
+
+    /**
+     * Edits an existing publication in the database.
+     *
+     * This method updates the information of a publication based on the provided parameters.
+     *
+     * @param string $title Title of the publication.
+     * @param string $caption Subtitle of the publication.
+     * @param string $content Content of the publication.
+     * @param string $date Date of the publication.
+     * @param string $category Category of the publication.
+     * @param string $id The encrypted ID (md5) of the publication.
+     * @return bool Returns true if the edit is successful; otherwise, returns false.
+    */
+    public function edit_publication(
+        $title,
+        $caption,
+        $content,
+        $date,
+        $category,
+        $id
+    ) {
+        $data = [
+            'titulo'=> $title,
+            'subtitulo'=> $caption,
+            'conteudo'=> $content,
+            'data'=> $date,
+            'categoria'=> $category,
+        ];
+
+        $this->db->where("md5(id)", $id);
+
+        return $this->db->update("postagens", $data);
+    }
+
+
+    /**
      * Adds a new publication to the database.
      *
      * This method receives the data of a new publication and inserts it into the database.

@@ -83,7 +83,7 @@ class Categories_model extends CI_Model {
     public function get_category_edit($id) {
         $this->db->where("md5(id)", $id);
 
-        return $this->db->get("categoria")->result()[0];
+        return $this->db->get("categoria")->result();
     }
 
     /**

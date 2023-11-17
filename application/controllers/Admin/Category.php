@@ -97,7 +97,7 @@ class Category extends CI_Controller {
         $this->load->library('table');
 
         $data = [
-            'title'=> 'Painel Administrativo',
+            'title'=> 'Painel de Controle',
             'caption'=> 'Categoria',
             'category'=> $this->categories_model->get_category_edit($id),
         ];

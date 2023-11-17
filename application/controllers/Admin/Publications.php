@@ -97,30 +97,61 @@ class Publications extends CI_Controller {
         }
     }
 
-
+    /**
+     * Displays the edit form for a publication.
+     *
+     * This method loads the 'table' library and the necessary data to display
+     * the edit form for a publication. The data includes information about
+     * the category of the publication and the details of the publication itself.
+     *
+     * @param string $id The encrypted ID (md5) of the publication.
+     * @return void
+    */
     public function change($id) {
         $this->load->library('table');
 
         $data = [
-            'title'=> 'Painel Administrativo',
-            'caption'=> 'Categoria',
-            'category'=> $this->categories_model->get_category_edit($id),
+            'title'=> 'Painel de Controle',
+            'caption'=> 'Publicação',
+            'categories'=> $this->categories_model->list_categories(),
+            'publication'=> $this->publications_model->get_publication_edit($id),
         ];
 
         $this->load->view('Admin/templates/head', $data);
         $this->load->view('Admin/templates/template');
-        $this->load->view('Admin/category-edit');
+        $this->load->view('Admin/publications-edit');
         $this->load->view('Admin/templates/footer');
     }
 
+    /**
+     * Saves the changes made to a publication.
+     *
+     * This method checks the validation of the publication before saving the changes.
+     * If the validation is successful, the edited information of the publication is
+     * saved in the database.
+     *
+     * @param string $id The encrypted ID (md5) of the publication.
+     * @return void
+    */
     public function save_edit($id) {
         if (!$this->validation_publication()) {
             $this->index();
         } else {
-            $title = $this->input->post('text-categoria');
+            $title = $this->input->post('text-titulo');
+            $caption = $this->input->post('text-subtitulo');
+            $content = $this->input->post('text-conteudo');
+            $date = $this->input->post('text-data');
+            $category = $this->input->post('select-categoria');
 
-            if ($this->categories_model->edit_category($id, $title)){
-                redirect(base_url('admin/categoria'));
+            if ($this->publications_model->edit_publication(
+                $title,
+                $caption,
+                $content,
+                $date,
+                $category,
+                $id
+            )){
+                redirect(base_url('admin/publicacao'));
             } else {
                 echo 'Houve um erro no sistema!';
             }
