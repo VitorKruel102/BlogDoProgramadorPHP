@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <?= validation_errors('<div class="alert alert-danger">', '</div>') ?>
-                            <?= form_open("admin/users/insert") ?>
+                            <?= form_open("admin/users/save_edit/".md5($user->id)) ?>
                                 <div class="form-group">
                                     <label id='text-nome'>Nome do Usuário</label>
                                     <input 
@@ -27,7 +27,7 @@
                                         name="text-nome"
                                         class="form-control" 
                                         placeholder="Digite o nome do usuário..."
-                                        value="<?= set_value('text-nome')?>"
+                                        value="<?= $user->nome ?>"
                                     >
                                 </div>
                                 <div class="form-group">
@@ -38,17 +38,19 @@
                                         name="text-email"
                                         class="form-control" 
                                         placeholder="Digite o email do usuário..."
-                                        value="<?= set_value('text-email')?>"
+                                        value="<?= $user->email ?>"
                                     >
                                 </div>
                                 <div class="form-group">
                                     <label id='text-historico'>Histórico</label>
                                     <textarea 
+                                        name="text-historico" 
                                         id="text-historico" 
-                                        name="text-historico"
-                                        class="form-control" 
+                                        cols="30" 
+                                        rows="5" 
+                                        class="form-control"
                                     >
-                                        <?= set_value('text-historico')?>
+                                        <?= $user->historico ?>
                                     </textarea>
                                 </div>
                                 <div class="form-group">
@@ -59,7 +61,7 @@
                                         name="text-user"
                                         class="form-control" 
                                         placeholder="Digite o user do usuário..."
-                                        value="<?= set_value('text-user')?>"
+                                        value="<?= $user->user ?>"
                                     >
                                 </div>
                                 <div class="form-group">
@@ -81,7 +83,7 @@
                                         class="form-control" 
                                     >
                                 </div>
-                                <button type="submit" class="btn btn-default">Cadastrar</button>
+                                <button type="submit" class="btn btn-default">Atualizar</button>
                             <?= form_close()?>
                         </div>
                     </div>
@@ -91,48 +93,6 @@
             </div>
             <!-- /.panel -->
         </div>
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <?= "Alterar $caption existente" ?><small></small>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <?php 
-                                $this->table->set_heading(
-                                    "Foto",
-                                    "Nome do Usuário",
-                                    "Alterar",
-                                    "Excluir"
-                                );
-                                foreach ($users as $user) {
-                                    $foto = 'Foto';
-                                    $nome = $user->nome;
-                                    $alterar = anchor(
-                                        base_url('admin/usuarios/alterar/'.md5($user->id)), 
-                                        '<i class="fa fa-refresh fa-fw"></i> Alterar'
-                                    );
-                                    $excluir = anchor(
-                                        base_url('admin/usuarios/excluir/'.md5($user->id)), 
-                                        '<i class="fa fa-remove fa-fw"></i> Excluir'
-                                    );
-                                    $this->table->add_row($foto, $nome, $alterar, $excluir);
-                                }
-                                $this->table->set_template(array(
-                                    'table_open'=> '<table class="table table-stried">',
-                                ));
-                                echo $this->table->generate();
-                            ?>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
 </div>

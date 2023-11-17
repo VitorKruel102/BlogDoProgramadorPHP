@@ -33,7 +33,7 @@ class Authors_model extends CI_Model {
         );
         $this->db->where("id = $id");
 
-        return $this->db->get('usuario')->result();
+        return $this->db->get('usuario')->result()[0];
     }
 
     /**
@@ -123,5 +123,49 @@ class Authors_model extends CI_Model {
         $this->db->where('md5(id)', $id);
 
         return $this->db->delete('usuario');
+    }
+
+    /**
+     * Gets details of a user based on the provided ID.
+     *
+     * This method queries the database to retrieve specific data about a user,
+     * including ID, name, history, email, and username. The ID is provided as 
+     * a parameter and is converted to its MD5 equivalent for the query.
+     *
+     * @param string $id The user's ID (MD5 format).
+     * @return object Returns an object containing user details, 
+     * including ID, name, history, email, and username.
+    */
+    public function get_user($id) {
+        $this->db->select(
+            'id, '.
+            'nome, '.
+            'historico, '.
+            'email, '.
+            'user'
+        );
+        $this->db->where("md5(id)", $id);
+
+        return $this->db->get('usuario')->result()[0];
+    }
+
+    public function edit_user(
+        $nome,
+        $email,
+        $historico,
+        $user,
+        $senha,
+        $id
+    ) {
+        $data = [
+            'nome'=> $nome,
+            'email'=> $email,
+            'historico'=> $historico,
+            'user'=> $user,
+            'senha'=> md5($senha),
+        ];
+        $this->db->where("md5(id)", $id);
+
+        return $this->db->update('usuario', $data);
     }
 }
