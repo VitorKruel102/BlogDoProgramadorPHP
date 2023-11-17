@@ -142,7 +142,8 @@ class Authors_model extends CI_Model {
             'nome, '.
             'historico, '.
             'email, '.
-            'user'
+            'user, '.
+            'img'
         );
         $this->db->where("md5(id)", $id);
 
@@ -181,6 +182,13 @@ class Authors_model extends CI_Model {
             'user'=> $user,
             'senha'=> md5($senha),
         ];
+        $this->db->where("md5(id)", $id);
+
+        return $this->db->update('usuario', $data);
+    }
+
+    public function edit_image($id) {
+        $data['img'] = TRUE;
         $this->db->where("md5(id)", $id);
 
         return $this->db->update('usuario', $data);

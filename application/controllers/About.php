@@ -51,7 +51,7 @@ class About extends CI_Controller {
             'title'=> 'Sobre nós',
             'caption'=> 'Autor',
             'categories'=> $this->categories,
-            'authors'=> $this->authors_model->get_author($id),
+            'author'=> $this->authors_model->get_author($id),
         ];
 
         $this->load->view('Home/templates/head', $data);

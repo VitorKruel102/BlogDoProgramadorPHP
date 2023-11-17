@@ -153,5 +153,10 @@ class LibraryForm {
                     }
                 }
         ';
+        $this->mostrando_imagem = '
+                Para mostrar a imagem, basta colocar a url da foto em uma função img().
+                Sintaxe:
+                    <?=img("assets/Home/img/users/".md5($user->id))?>
+        ';
     }
 }

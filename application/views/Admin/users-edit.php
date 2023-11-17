@@ -97,6 +97,25 @@
                     <?= "Imagem de destaque do $caption" ?><small></small>
                 </div>
                 <div class="panel-body">
+                    <div class="row" style="padding-bottom: 15px;">
+                        <div class="col-lg-3 col-lg-offset-3">
+                            <?php 
+                                if ($user->img) {
+                                    echo img(
+                                        "assets/Home/img/users/".md5($user->id), 
+                                        false, 
+                                        ["style"=> "border-radius: 50%"]
+                                    ); 
+                                } else {
+                                    echo img(
+                                        "assets/Home/img/semFoto.png",
+                                        false, 
+                                        ["style"=> "border-radius: 50%"]
+                                    );
+                                }
+                            ?>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12">
                             <?= form_open_multipart('admin/users/new_photo/'.md5($user->id)) ?>

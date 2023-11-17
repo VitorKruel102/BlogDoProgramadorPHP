@@ -36,7 +36,18 @@
             <div class="col-md-12 row">
                 <?php foreach($authors as $author): ?>
                     <div class="col-md-4 col-xs-6">
-                        <img class="img-responsive img-circle" src="http://placehold.it/200x200" alt="Imagem autor">
+                        <?php 
+                            if ($author->img) {
+                                $url_photo = "assets/Home/img/users/".md5($author->id); 
+                            } else {
+                                $url_photo = "assets/Home/img/semFoto.png";
+                            }
+                        ?>
+                        <img
+                            class="img-responsive img-circle" 
+                            src="<?= base_url($url_photo) ?>" 
+                            alt="imagem autor"
+                        >
                         <h4 class="text-center">
                             <a href="<?= base_url("autor/$author->id/".snake_case($author->nome)) ?>">
                                 <?= $author->nome ?>

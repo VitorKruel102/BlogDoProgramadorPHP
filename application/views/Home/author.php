@@ -7,23 +7,28 @@
                 <?= $title ?><small> > <?= $caption ?></small>
             </h1>
             <!-- Author -->
-            <?php foreach($authors as $author): ?>
-                <div class="col-md-4">
-                    <img
-                        class="img-responsive img-circle" 
-                        src="http://placehold.it/200x200" 
-                        alt="imagem autor"
-                    >
-                </div>
-                <div class="col-md-8 ">
-                    <h2>
-                        <?=$author->nome?>
-                    </h2>
-                    <hr>
-                    <p>
-                        <?=$author->historico?>
-                    </p>
-                    <hr>
-                </div>
-            <?php endforeach ?>
+            <div class="col-md-4">
+                <?php 
+                    if ($author->img) {
+                        $url_photo = "assets/Home/img/users/".md5($author->id); 
+                    } else {
+                        $url_photo = "assets/Home/img/semFoto.png";
+                    }
+                ?>
+                <img
+                    class="img-responsive img-circle" 
+                    src="<?= base_url($url_photo) ?>" 
+                    alt="imagem autor"
+                >
+            </div>
+            <div class="col-md-8 ">
+                <h2>
+                    <?=$author->nome?>
+                </h2>
+                <hr>
+                <p>
+                    <?=$author->historico?>
+                </p>
+                <hr>
+            </div>
         </div>

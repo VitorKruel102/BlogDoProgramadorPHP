@@ -105,17 +105,29 @@
                                     "Excluir"
                                 );
                                 foreach ($users as $user) {
-                                    $foto = 'Foto';
-                                    $nome = $user->nome;
-                                    $alterar = anchor(
+                                    if ($user->img) {
+                                        $photo = img(
+                                            "assets/Home/img/users/".md5($user->id), 
+                                            false, 
+                                            ["style"=> "border-radius: 50%; width: 50px"]
+                                        ); 
+                                    } else {
+                                        $photo = img(
+                                            "assets/Home/img/semFoto.png",
+                                            false, 
+                                            ["style"=> "border-radius: 50%; width: 50px"]
+                                        );
+                                    }
+                                    $name = $user->nome;
+                                    $change = anchor(
                                         base_url('admin/usuarios/alterar/'.md5($user->id)), 
                                         '<i class="fa fa-refresh fa-fw"></i> Alterar'
                                     );
-                                    $excluir = anchor(
+                                    $exclude = anchor(
                                         base_url('admin/usuarios/excluir/'.md5($user->id)), 
                                         '<i class="fa fa-remove fa-fw"></i> Excluir'
                                     );
-                                    $this->table->add_row($foto, $nome, $alterar, $excluir);
+                                    $this->table->add_row($photo, $name, $change, $exclude);
                                 }
                                 $this->table->set_template(array(
                                     'table_open'=> '<table class="table table-stried">',

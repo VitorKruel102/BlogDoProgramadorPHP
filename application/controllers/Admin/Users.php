@@ -126,7 +126,6 @@ class Users extends CI_Controller {
      * in the admin panel. Otherwise, it displays an error message.
      *
      * @param string $id The ID of the user to be edited.
-     *
      * @return void
     */
     public function save_edit($id) {
@@ -156,6 +155,18 @@ class Users extends CI_Controller {
         }
     }
 
+    /**
+     * Saves the edits of a user after the edit form is submitted.
+     *
+     * This method checks if the information provided in the edit form is 
+     * valid using the `validation_user()` method. If the information is valid, 
+     * the edits are saved in the database for the user corresponding to the 
+     * provided ID. If the edit is successful, it redirects to the users' page 
+     * in the admin panel. Otherwise, it displays an error message.
+     *
+     * @param string $id The ID of the user to be edited.
+     * @return void
+    */
     public function new_photo($id) {
         $this->login_manager();
         
@@ -179,7 +190,11 @@ class Users extends CI_Controller {
             $this->load->library('image_lib', $config_img);
 
             if ($this->image_lib->resize()) {
-                redirect(base_url("admin/usuarios/alterar/$id"));
+                if ($this->authors_model->edit_image($id)) {
+                    redirect(base_url("admin/usuarios/alterar/$id"));
+                } else {
+                    echo 'Houve um erro no sistema!';
+                } 
             } else {
                 echo $this->image_lib->display_errors();
             }
@@ -327,7 +342,7 @@ class Users extends CI_Controller {
         );
         $this->form_validation->set_rules(
             $id_input_user,
-            'Histórico',
+            'User',
             'required|min_length[3]|is_unique[usuario.user]'
         );
         $this->form_validation->set_rules(
