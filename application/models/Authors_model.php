@@ -72,7 +72,7 @@ class Authors_model extends CI_Model {
         $this->db->where("user", $user);
         $this->db->where("senha", md5($password));
 
-        return $this->db->get("usuario")->result(); 
+        return $this->db->get("usuario")->result()[0]; 
     }
 
     /**

@@ -250,7 +250,7 @@ class Users extends CI_Controller {
 
             if ($user_exists) {
                 $data = [
-                    'user_logged'=> $user_exists[0],
+                    'user_logged'=> $user_exists,
                     'logged'=> TRUE,
                 ];
                 $this->session->set_userdata($data);

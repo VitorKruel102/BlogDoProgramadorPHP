@@ -44,14 +44,35 @@ class Publications extends CI_Controller {
         $this->load->view('Admin/templates/footer');
     }
 
-    public function insert() {
-        if (!$this->validation_category()) {
+    /**
+     * Inserts a new publication into the database.
+     *
+     * This method checks the validation of the publication, and if validation
+     * passes, it inserts a new publication into the database. Otherwise, it
+     * redirects to the main page of the control panel.
+     *
+     * @param int $id The ID of the publication (not used in this context).
+     * @return void
+    */
+    public function insert($id) {
+        if (!$this->validation_publication()) {
             $this->index();
         } else {
-            $titulo = $this->input->post('text-categoria');
+            $title = $this->input->post('text-titulo');
+            $caption = $this->input->post('text-subtitulo');
+            $content = $this->input->post('text-conteudo');
+            $date = $this->input->post('text-data');
+            $category = $this->input->post('select-categoria');
 
-            if ($this->categories_model->add_category($titulo)){
-                redirect(base_url('admin/categoria'));
+            if ($this->publications_model->add_publication(
+                $title,
+                $caption,
+                $content,
+                $date,
+                $category,
+                $id
+            )){
+                redirect(base_url('admin/publicacao'));
             } else {
                 echo 'Houve um erro no sistema!';
             }
@@ -59,34 +80,24 @@ class Publications extends CI_Controller {
     }
 
     /**
-     * Removes a specific category from the database.
+     * Deletes a publication from the database.
      *
-     * This method receives the ID of the category to be removed as a parameter
-     * and attempts to remove it from the database. If the removal is successful,
-     * it redirects to the categories page in the admin panel. If the removal fails,
-     * it displays an error message.
+     * This method checks if the deletion of the publication was successful.
+     * If it was, it redirects to the main publications page in the control panel.
+     * Otherwise, it displays an error message.
      *
-     * @param int $id The ID of the category to be removed.
+     * @param int $id The ID of the publication to be deleted.
      * @return void
     */
     public function exclude($id) {
-        if ($this->categories_model->remove_category($id)){
-            redirect(base_url('admin/categoria'));
+        if ($this->publications_model->remove_publication($id)){
+            redirect(base_url('admin/publicacao'));
         } else {
             echo 'Houve um erro no sistema!';
         }
     }
 
-    /**
-     * Displays the category editing page in the admin panel.
-     *
-     * This method loads the 'table' library from CodeIgniter and displays the
-     * category editing page in the admin panel. The loaded data includes title,
-     * caption, and information about the category to be edited.
-     *
-     * @param string $id The ID of the category to be edited (MD5 hash).
-     * @return void
-    */
+
     public function change($id) {
         $this->load->library('table');
 
@@ -102,24 +113,13 @@ class Publications extends CI_Controller {
         $this->load->view('Admin/templates/footer');
     }
 
-    /**
-     * Saves the changes made to a category after editing.
-     *
-     * This method performs validation of the form data, specifically for the
-     * 'Nome da Categoria' field. If the validation is successful, it saves the
-     * changes to the database and redirects to the categories page in the admin
-     * panel. If the validation fails, it redirects back to the main admin panel page.
-     *
-     * @param string $id The ID of the category to be edited (MD5 hash).
-     * @return void
-    */
     public function save_edit($id) {
-        if (!$this->validation_category()) {
+        if (!$this->validation_publication()) {
             $this->index();
         } else {
-            $titulo = $this->input->post('text-categoria');
+            $title = $this->input->post('text-categoria');
 
-            if ($this->categories_model->edit_category($id, $titulo)){
+            if ($this->categories_model->edit_category($id, $title)){
                 redirect(base_url('admin/categoria'));
             } else {
                 echo 'Houve um erro no sistema!';
@@ -136,13 +136,24 @@ class Publications extends CI_Controller {
      *
      * @return bool True if the validation is successful, False otherwise.
     */
-    protected function validation_category() {
-        $id_category = 'text-categoria';
-        $field_name = 'Nome da Categoria';
-        $validator = 'required|min_length[3]|is_unique[categoria.titulo]';
-        
+    protected function validation_publication() {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules($id_category, $field_name, $validator);
+        
+        $this->form_validation->set_rules(
+            'text-titulo', 
+            'Titulo', 
+            'required|min_length[3]'
+        );
+        $this->form_validation->set_rules(
+            'text-subtitulo', 
+            'Subtitulo', 
+            'required|min_length[3]'
+        );
+        $this->form_validation->set_rules(
+            'text-conteudo', 
+            'Conteudo', 
+            'required|min_length[20]'
+        );
 
         return $this->form_validation->run();
     }

@@ -113,4 +113,54 @@ class Publications_model extends CI_Model {
 
         return $this->db->get('postagens')->result();
     }
+
+    /**
+     * Adds a new publication to the database.
+     *
+     * This method receives the data of a new publication and inserts it into the database.
+     * Returns true if the insertion is successful, and false otherwise.
+     *
+     * @param string $title The title of the publication.
+     * @param string $caption The subtitle of the publication.
+     * @param string $content The content of the publication.
+     * @param string $date The date of the publication.
+     * @param string $category The category of the publication.
+     * @param string $user The user associated with the publication.
+     * @return bool True if the insertion is successful, False otherwise.
+    */
+    public function add_publication(
+        $title,
+        $caption,
+        $content,
+        $date,
+        $category,
+        $user
+    ) {
+        $data = [
+            'titulo'=> $title,
+            'subtitulo'=> $caption,
+            'conteudo'=> $content,
+            'user'=> $user,
+            'data'=> $date,
+            'categoria'=> $category,
+        ];
+        
+        return $this->db->insert('postagens', $data);
+    }
+
+    /**
+     * Removes a publication from the database.
+     *
+     * This method uses the provided publication ID to locate and delete
+     * the corresponding publication in the database. Returns true if the deletion is successful,
+     * and false otherwise.
+     *
+     * @param string $id The ID of the publication to be removed.
+     * @return bool True if the removal is successful, False otherwise.
+    */
+    public function remove_publication($id) {
+        $this->db->where('md5(id)', $id);
+
+        return $this->db->delete('postagens');
+    }
 }

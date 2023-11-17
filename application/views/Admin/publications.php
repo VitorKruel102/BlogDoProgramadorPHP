@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <?= validation_errors('<div class="alert alert-danger">', '</div>') ?>
-                            <?= form_open("admin/users/insert") ?>
+                            <?= form_open("admin/publications/insert/".$this->session->userdata('user_logged')->id) ?>
                                 <div class="form-group">
                                     <label id="select-categoria">Categoria</label>
                                     <select id="select-categoria" name="select-categoria" class="form-control">
@@ -62,7 +62,7 @@
                                 <div class="form-group">
                                     <label id='text-data'>Data</label>
                                     <input 
-                                        type="datatime-local" 
+                                        type="datetime-local" 
                                         id="text-data" 
                                         name="text-data"
                                         class="form-control" 
