@@ -116,6 +116,19 @@ class Users extends CI_Controller {
         $this->load->view('Admin/templates/footer');
     }
     
+    /**
+     * Saves the edits of a user after the edit form is submitted.
+     *
+     * This method checks if the information provided in the edit form is valid
+     * using the `validation_user()` method. If the information is valid, the 
+     * edits are saved in the database for the user corresponding to the 
+     * provided ID. If the edit is successful, it redirects to the users' page 
+     * in the admin panel. Otherwise, it displays an error message.
+     *
+     * @param string $id The ID of the user to be edited.
+     *
+     * @return void
+    */
     public function save_edit($id) {
         $this->login_manager();
 
@@ -139,6 +152,36 @@ class Users extends CI_Controller {
                 redirect(base_url('admin/usuarios'));
             } else {
                 echo 'Houve um erro no sistema!';
+            }
+        }
+    }
+
+    public function new_photo($id) {
+        $this->login_manager();
+        
+        $config_upload = [
+            'upload_path'=> './assets/Home/img/users',
+            'allowed_types'=> 'jpg',
+            'file_name'=> "$id.jpg",
+            "overwrite"=> TRUE,
+        ];
+        $this->load->library('upload', $config_upload);
+
+        if (!$this->upload->do_upload()) {
+            echo $this->upload->display_errors();
+        } else {
+            $config_img = [
+                'source_image'=> "./assets/Home/img/users/$id.jpg",
+                'create_thumb'=> FALSE,
+                'width'=> 200,
+                'height'=> 200,
+            ];
+            $this->load->library('image_lib', $config_img);
+
+            if ($this->image_lib->resize()) {
+                redirect(base_url("admin/usuarios/alterar/$id"));
+            } else {
+                echo $this->image_lib->display_errors();
             }
         }
     }

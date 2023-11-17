@@ -49,9 +49,7 @@
                                         cols="30" 
                                         rows="5" 
                                         class="form-control"
-                                    >
-                                        <?= $user->historico ?>
-                                    </textarea>
+                                    ><?= $user->historico ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label id='text-user'>User</label>
@@ -93,6 +91,45 @@
             </div>
             <!-- /.panel -->
         </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <?= "Imagem de destaque do $caption" ?><small></small>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <?= form_open_multipart('admin/users/new_photo/'.md5($user->id)) ?>
+                                <?= form_hidden('id', md5($user->id)) ?>
+                                <div class="form-group">
+                                    <?= form_upload(
+                                        array(
+                                            'name'=> 'userfile',
+                                            'id'=> 'userfile',
+                                            'class'=> 'form-control',
+                                        )
+                                    ) ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= form_submit(
+                                        array(
+                                            'name'=> 'btn_adicionar',
+                                            'id'=> 'btn_adicionar',
+                                            'class'=> 'btn btn-default',
+                                            'value'=> 'Adicionar nova imagem',
+                                        )
+                                    ) ?>
+                                </div>
+                            <?= form_close() ?>
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
 </div>

@@ -47,9 +47,7 @@
                                         id="text-historico" 
                                         name="text-historico"
                                         class="form-control" 
-                                    >
-                                        <?= set_value('text-historico')?>
-                                    </textarea>
+                                    ><?= set_value('text-historico')?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label id='text-user'>User</label>

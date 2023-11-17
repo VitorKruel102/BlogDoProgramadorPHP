@@ -149,6 +149,23 @@ class Authors_model extends CI_Model {
         return $this->db->get('usuario')->result()[0];
     }
 
+    /**
+     * Edits the information of a user in the database.
+     *
+     * This method receives updated information about a user, including 
+     * name, email, history, username, password, and the ID of the user 
+     * to be updated. The data is then updated in the database for the 
+     * user corresponding to the provided ID, after converting the ID to the MD5 format for the query.
+     *
+     * @param string $name      The new name of the user.
+     * @param string $email     The new email address of the user.
+     * @param string $history   The new history of the user.
+     * @param string $username  The new username of the user.
+     * @param string $password  The new password of the user (in MD5 format).
+     * @param string $id        The ID of the user to be edited (in MD5 format).
+     *
+     * @return bool Returns true if the editing is successful, false otherwise.
+    */
     public function edit_user(
         $nome,
         $email,
