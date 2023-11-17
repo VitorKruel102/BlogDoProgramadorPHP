@@ -98,4 +98,19 @@ class Publications_model extends CI_Model {
 
         return $this->db->get('postagens')->result();
     }
+
+    /**
+     * Retrieves all publications ordered by date in descending order.
+     *
+     * This method queries the database to retrieve all publications from the
+     * 'postagens' table, ordering them by date in descending order (from the
+     * most recent to the oldest).
+     *
+     * @return array An array containing objects representing the publications.
+    */
+    public function get_publications() {
+        $this->db->order_by('data', 'DESC');
+
+        return $this->db->get('postagens')->result();
+    }
 }

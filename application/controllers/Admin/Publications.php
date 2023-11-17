@@ -1,7 +1,7 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Category extends CI_Controller {
+class Publications extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -11,16 +11,20 @@ class Category extends CI_Controller {
             redirect(base_url('admin/login'));
         }
 
+        $this->load->helper('funcoes');
+        $this->load->model('publications_model');
         $this->load->model('categories_model');
         $this-> categories = $this->categories_model->list_categories();
     }
 
     /**
-     * Main page of the administrative panel for categories.
+     * Displays the main page of the control panel for managing publications.
      *
-     * This method loads the 'table' library from CodeIgniter and displays the main
-     * page of the administrative panel for category management. The loaded data
-     * includes title, caption, and available categories for display.
+     * This method loads the 'table' library and sets the necessary data to display
+     * the main page of the control panel. It includes titles, available categories,
+     * and the list of publications obtained by the `get_publications()` method from
+     * the publication model. The data is then passed to the corresponding views to
+     * render the page.
      *
      * @return void
     */
@@ -29,27 +33,17 @@ class Category extends CI_Controller {
 
         $data = [
             'title'=> 'Painel de Controle',
-            'caption'=> 'Categoria',
+            'caption'=> 'Publicação',
             'categories'=> $this->categories,
+            'publications'=> $this->publications_model->get_publications(),
         ];
 
         $this->load->view('Admin/templates/head', $data);
         $this->load->view('Admin/templates/template');
-        $this->load->view('Admin/category');
+        $this->load->view('Admin/publications');
         $this->load->view('Admin/templates/footer');
     }
 
-    /**
-     * Inserts a new category after form validation.
-     *
-     * This method performs validation of the form data, specifically for the
-     * 'Nome da Categoria' field. If the validation is successful, it inserts the
-     * new category into the database and redirects to the categories page in the
-     * admin panel. If the validation fails, it redirects back to the main admin
-     * panel page.
-     *
-     * @return void
-    */
     public function insert() {
         if (!$this->validation_category()) {
             $this->index();

@@ -21,7 +21,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?= base_url('admin/postagem') ?>">
+                        <a href="<?= base_url('admin/publicacao') ?>">
                             <i class="fa fa-edit fa-fw"></i> 
                             Postagens
                         </a>

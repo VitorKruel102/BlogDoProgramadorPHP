@@ -69,3 +69,4 @@ $route['blogdoprogramadorphp/admin/usuarios/logout'] = 'admin/users/logout';
 $route['blogdoprogramadorphp/admin/usuarios'] = 'admin/users/index';
 $route['blogdoprogramadorphp/admin/usuarios/excluir/(:any)'] = 'admin/users/exclude/$1';
 $route['blogdoprogramadorphp/admin/usuarios/alterar/(:any)'] = 'admin/users/change/$1';
+$route['blogdoprogramadorphp/admin/publicacao'] = 'admin/publications/index';

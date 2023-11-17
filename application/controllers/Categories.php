@@ -6,6 +6,7 @@ class Categories extends CI_Controller {
         parent::__construct();
         
         $this->load->helper('funcoes');
+        $this->load->model('publications_model');
         $this->load->model('categories_model');
         $this->categories = $this->categories_model->list_categories();
     }
@@ -18,7 +19,6 @@ class Categories extends CI_Controller {
 	 * @return void
 	*/
     public function index($id, $slug = null) {
-        $this->load->model('Home/publications_model');
         $this->category_title = $this->categories_model->get_category($id)->titulo;
 
         $data = [
