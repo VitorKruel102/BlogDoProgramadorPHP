@@ -89,20 +89,20 @@
                     <?= "Imagem de destaque do $caption" ?><small></small>
                 </div>
                 <div class="panel-body">
-                    <div class="row" style="padding-bottom: 15px;">
+                    <div class="row" style="padding-bottom: 15px; margin-left: 0;">
                         <div class="col-lg-3 col-lg-offset-1">
                             <?php 
                                 if ($publication->img) {
                                     echo img(
                                         "assets/Home/img/publication/".md5($publication->id), 
                                         false, 
-                                        ["style"=> "border-radius: 50%"]
+                                        ["style"=> "width: 300px; margin:auto;"]
                                     ); 
                                 } else {
                                     echo img(
                                         "assets/Home/img/semFoto2.png",
                                         false, 
-                                        ["style"=> "border-radius: 50%"]
+                                        ["style"=> "width: 300px"]
                                     );
                                 }
                             ?>
@@ -110,7 +110,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <?= form_open_multipart('admin/publication/new_photo/'.md5($publication->id)) ?>
+                            <?= form_open_multipart('admin/publications/new_photo/'.md5($publication->id)) ?>
                                 <?= form_hidden('id', md5($publication->id)) ?>
                                 <div class="form-group">
                                     <?= form_upload(

@@ -214,4 +214,20 @@ class Publications_model extends CI_Model {
 
         return $this->db->delete('postagens');
     }
+
+    /**
+     * Edits the image associated with a publication.
+     *
+     * This method marks the existence of an image associated with a specific publication,
+     * identified by its ID. This is useful to indicate that the publication has an associated image.
+     *
+     * @param string $id The ID of the publication whose image will be edited.
+     * @return bool Returns TRUE if the editing is successful; FALSE otherwise.
+    */
+    public function edit_image($id) {
+        $data['img'] = TRUE;
+        $this->db->where("md5(id)", $id);
+
+        return $this->db->update('postagens', $data);
+    }
 }

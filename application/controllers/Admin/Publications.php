@@ -159,6 +159,48 @@ class Publications extends CI_Controller {
     }
 
     /**
+     * Adds a new photo to an existing publication.
+     *
+     * This method uploads a new photo for a specific publication identified by its ID.
+     * The photo is saved in the directory './assets/Home/img/publication' with the name formatted as "$id.jpg".
+     * After uploading, the image is resized to a width of 900 pixels and a height of 300 pixels.
+     *
+     * @param string $id The ID of the publication to which the new photo will be associated.
+     * @return void
+    */
+    public function new_photo($id) {
+        $config_upload = [
+            'upload_path'=> './assets/Home/img/publication',
+            'allowed_types'=> 'jpg',
+            'file_name'=> "$id.jpg",
+            'overwrite'=> TRUE,
+        ];
+        $this->load->library('upload', $config_upload);
+
+        if (!$this->upload->do_upload()) {
+            echo $this->upload->display_errors();
+        } else {
+            $config_img = [
+                'source_image'=> "./assets/Home/img/publication/$id.jpg",
+                'create_thumb'=> FALSE,
+                'width'=> 900,
+                'height'=> 300,
+            ];
+            $this->load->library('image_lib', $config_img);
+
+            if ($this->image_lib->resize()) {
+                if ($this->publications_model->edit_image($id)) {
+                    redirect(base_url("admin/publicacao/alterar/$id"));
+                } else {
+                    echo 'Houve um erro no sistema!';
+                } 
+            } else {
+                echo $this->image_lib->display_errors();
+            }
+        }
+    }
+
+    /**
      * Performs validation of category data.
      *
      * This method uses the 'form_validation' library from CodeIgniter to set
