@@ -98,7 +98,19 @@
                                     "Excluir"
                                 );
                                 foreach ($publications as $publication) {
-                                    $photo = 'Foto Pub';
+                                    if ($publication->img) {
+                                        $photo = img(
+                                            "assets/Home/img/publication/".md5($publication->id), 
+                                            false, 
+                                            ["style"=> "width: 220px; margin:auto;"]
+                                        ); 
+                                    } else {
+                                        $photo = img(
+                                            "assets/Home/img/semFoto2.png",
+                                            false, 
+                                            ["style"=> "width: 220px"]
+                                        );
+                                    }
                                     $title = $publication->titulo;
                                     $date = date_format_string($publication->data);
                                     $change = anchor(

@@ -23,8 +23,10 @@
                 <p>
                     <?= $post->subtitulo ?>
                 </p>
-                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-                <hr>
+                <?php if($post->img): ?>
+                    <img class="img-responsive" src="<?= base_url("assets/Home/img/publication/".md5($post->id)); ?>" alt="">
+                    <hr>
+                <?php  endif; ?>
                 <p>
                     <?= $post->conteudo ?>
                 </p>
