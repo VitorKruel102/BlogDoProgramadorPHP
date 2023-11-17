@@ -43,6 +43,13 @@ class LibraryForm {
             "admin/category/insert" => Método que será chamado para registrar
                                        e validar o formulario.
         ';
+        $this->set_value = '
+                Utilizado dentro do atributo value para deixar salvo os dados
+                do formulário quando tiver algum erro, para não apagar o que
+                já havia sido feito;
+                Sintaxe:
+                    value="<?= set_value("txt-nome")?>"
+        ';
     }
     public function set_SetRules() {
         $this->set_rules = '
@@ -61,6 +68,8 @@ class LibraryForm {
             min_length[3] => Mínimo 3 caracteres;
             max_length[3] => Máximo 3 caracteres;
             is_unique[categoria.titulo] => Registro Titulo precisa ser único;
+            valid_email => Valida o email  ;
+            matches[id_input] => Se igual ao valor de outro input;
         ';
     }
     public function set_CondicaoValidacao() {

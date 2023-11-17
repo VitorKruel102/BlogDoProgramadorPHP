@@ -20,7 +20,7 @@
                             <?= validation_errors('<div class="alert alert-danger">', '</div>') ?>
                             <?= form_open("admin/category/insert") ?>
                                 <div class="form-group">
-                                    <label>Nome da Categoria</label>
+                                    <label id='text-categoria'>Nome da Categoria</label>
                                     <input 
                                         type="text" 
                                         id="text-categoria" 

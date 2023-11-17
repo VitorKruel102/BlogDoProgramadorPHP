@@ -51,17 +51,10 @@ class Category extends CI_Controller {
      * @return void
     */
     public function insert() {
-        $id_category = 'text-categoria';
-        $field_name = 'Nome da Categoria';
-        $validator = 'required|min_length[3]|is_unique[categoria.titulo]';
-        
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules($id_category, $field_name, $validator);
-
-        if (!$this->form_validation->run()) {
+        if (!$this->validation_category()) {
             $this->index();
         } else {
-            $titulo = $this->input->post($id_category);
+            $titulo = $this->input->post('text-categoria');
 
             if ($this->categories_model->add_category($titulo)){
                 redirect(base_url('admin/categoria'));
@@ -127,17 +120,10 @@ class Category extends CI_Controller {
      * @return void
     */
     public function save_edit($id) {
-        $id_category = 'text-categoria';
-        $field_name = 'Nome da Categoria';
-        $validator = 'required|min_length[3]|is_unique[categoria.titulo]';
-        
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules($id_category, $field_name, $validator);
-
-        if (!$this->form_validation->run()) {
+        if (!$this->validation_category()) {
             $this->index();
         } else {
-            $titulo = $this->input->post($id_category);
+            $titulo = $this->input->post('text-categoria');
 
             if ($this->categories_model->edit_category($id, $titulo)){
                 redirect(base_url('admin/categoria'));
@@ -146,4 +132,25 @@ class Category extends CI_Controller {
             }
         }
     }
+
+    /**
+     * Performs validation of category data.
+     *
+     * This method uses the 'form_validation' library from CodeIgniter to set
+     * validation rules for the name of a category. The rules include being required,
+     * having a minimum length of 3 characters, and being unique in the 'categoria' table.
+     *
+     * @return bool True if the validation is successful, False otherwise.
+    */
+    protected function validation_category() {
+        $id_category = 'text-categoria';
+        $field_name = 'Nome da Categoria';
+        $validator = 'required|min_length[3]|is_unique[categoria.titulo]';
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules($id_category, $field_name, $validator);
+
+        return $this->form_validation->run();
+    }
+
 }

@@ -26,8 +26,8 @@ class Home extends CI_Controller {
         ];
 
         $this->load->view('Admin/templates/head', $data);
-        $this->load->view('Admin/templates/template', $data);
-        $this->load->view('Admin/home', $data);
-        $this->load->view('Admin/templates/footer', $data);
+        $this->load->view('Admin/templates/template');
+        $this->load->view('Admin/home');
+        $this->load->view('Admin/templates/footer');
     }
 }

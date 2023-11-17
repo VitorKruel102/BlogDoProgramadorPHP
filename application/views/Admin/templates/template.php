@@ -27,7 +27,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?= base_url('admin/usuario') ?>">
+                        <a href="<?= base_url('admin/usuarios') ?>">
                             <i class="fa fa-wrench fa-fw"></i> 
                             Usuários
                         </a>
