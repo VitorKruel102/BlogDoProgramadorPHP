@@ -11,7 +11,6 @@ class About extends CI_Controller {
         $this->categories = $this->categories_model->list_categories();
     }
 
-    
     /**
 	 * Function index
 	 *

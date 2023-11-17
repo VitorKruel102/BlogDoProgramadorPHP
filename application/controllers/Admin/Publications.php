@@ -5,7 +5,7 @@ class Publications extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        
+
         $is_logged = $this->session->userdata('logged');
         if (!$is_logged) {
             redirect(base_url('admin/login'));
@@ -211,7 +211,7 @@ class Publications extends CI_Controller {
     */
     protected function validation_publication() {
         $this->load->library('form_validation');
-        
+
         $this->form_validation->set_rules(
             'text-titulo', 
             'Titulo', 
@@ -230,5 +230,4 @@ class Publications extends CI_Controller {
 
         return $this->form_validation->run();
     }
-
 }

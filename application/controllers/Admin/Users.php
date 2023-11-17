@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Users extends CI_Controller {
     public function __construct() {
         parent::__construct();
+
         $this->load->model('authors_model');
     }
 
@@ -20,7 +21,7 @@ class Users extends CI_Controller {
     public function index() {
         $this->login_manager();
         $this->load->library('table');
-        
+
         $data = [
             'title'=> 'Painel Administrativo',
             'caption'=> 'Usuários',
@@ -50,18 +51,18 @@ class Users extends CI_Controller {
         if (!$this->validation_user()) {
             $this->index();
         } else {
-            $nome = $this->input->post('text-nome');
+            $name = $this->input->post('text-nome');
             $email = $this->input->post('text-email');
-            $historico = $this->input->post('text-historico');
+            $historic = $this->input->post('text-historico');
             $user = $this->input->post('text-user');
-            $senha = $this->input->post('text-senha');
+            $password = $this->input->post('text-senha');
             
             if ($this->authors_model->add_authors(
-                $nome,
+                $name,
                 $email,
-                $historico,
+                $historic,
                 $user,
-                $senha
+                $password
             )) {
                 redirect(base_url('admin/usuarios'));
             } else {
@@ -115,7 +116,7 @@ class Users extends CI_Controller {
         $this->load->view('Admin/users-edit');
         $this->load->view('Admin/templates/footer');
     }
-    
+
     /**
      * Saves the edits of a user after the edit form is submitted.
      *
@@ -134,19 +135,18 @@ class Users extends CI_Controller {
         if (!$this->validation_user()) {
             $this->index();
         } else {
-            $nome = $this->input->post('text-nome');
+            $name = $this->input->post('text-nome');
             $email = $this->input->post('text-email');
-            $historico = $this->input->post('text-historico');
+            $historic = $this->input->post('text-historico');
             $user = $this->input->post('text-user');
-            $senha = $this->input->post('text-senha');
-            
+            $password = $this->input->post('text-senha');
+
             if ($this->authors_model->edit_user(
-                $nome,
+                $name,
                 $email,
-                $historico,
+                $historic,
                 $user,
-                $senha,
-                $id
+                $password
             )) {
                 redirect(base_url('admin/usuarios'));
             } else {
@@ -318,15 +318,15 @@ class Users extends CI_Controller {
     protected function validation_user() {
         $this->load->library('form_validation');
 
-        $id_input_nome = 'text-nome';
+        $id_input_name = 'text-nome';
         $id_input_email = 'text-email';
-        $id_input_historico = 'text-historico';
+        $id_input_historic = 'text-historico';
         $id_input_user = 'text-user';
-        $id_input_senha = 'text-senha';
-        $id_input_confirmar_senha = 'text-confirmar-senha';
-       
+        $id_input_password = 'text-senha';
+        $id_input_confirm_password = 'text-confirmar-senha';
+
         $this->form_validation->set_rules(
-            $id_input_nome,
+            $id_input_name,
             'Nome do Usuário',
             'required|min_length[3]'
         );
@@ -336,7 +336,7 @@ class Users extends CI_Controller {
             'required|valid_email'
         );
         $this->form_validation->set_rules(
-            $id_input_historico,
+            $id_input_historic,
             'Histórico',
             'required|min_length[20]'
         );
@@ -346,12 +346,12 @@ class Users extends CI_Controller {
             'required|min_length[3]|is_unique[usuario.user]'
         );
         $this->form_validation->set_rules(
-            $id_input_senha,
+            $id_input_password,
             'Senha',
             'required|min_length[3]'
         );
         $this->form_validation->set_rules(
-            $id_input_confirmar_senha,
+            $id_input_confirm_password,
             'Confirmar senha',
             "required|matches[text-senha]"
         );

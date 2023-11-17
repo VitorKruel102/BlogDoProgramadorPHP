@@ -48,8 +48,8 @@ class Categories_model extends CI_Model {
      * @param string $titulo The title of the new category to be added.
      * @return bool Returns true if the insertion is successful, otherwise, false.
     */
-    public function add_category($titulo) {
-        $data['titulo'] = $titulo;
+    public function add_category($title) {
+        $data['titulo'] = $title;
 
         return $this->db->insert('categoria', $data);
     }
@@ -98,8 +98,8 @@ class Categories_model extends CI_Model {
      * @param string $titulo The new title of the category.
      * @return bool Returns true if the edit is successful, otherwise, false.
     */
-    public function edit_category($id, $titulo) {
-        $data['titulo'] = $titulo;
+    public function edit_category($id, $title) {
+        $data['titulo'] = $title;
         $this->db->where("md5(id)", $id);
 
         return $this->db->update('categoria', $data);

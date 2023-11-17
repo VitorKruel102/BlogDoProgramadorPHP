@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Category extends CI_Controller {
-
     public function __construct() {
         parent::__construct();
         
@@ -54,9 +53,9 @@ class Category extends CI_Controller {
         if (!$this->validation_category()) {
             $this->index();
         } else {
-            $titulo = $this->input->post('text-categoria');
+            $title = $this->input->post('text-categoria');
 
-            if ($this->categories_model->add_category($titulo)){
+            if ($this->categories_model->add_category($title)){
                 redirect(base_url('admin/categoria'));
             } else {
                 echo 'Houve um erro no sistema!';
@@ -123,9 +122,9 @@ class Category extends CI_Controller {
         if (!$this->validation_category()) {
             $this->index();
         } else {
-            $titulo = $this->input->post('text-categoria');
+            $title = $this->input->post('text-categoria');
 
-            if ($this->categories_model->edit_category($id, $titulo)){
+            if ($this->categories_model->edit_category($id, $title)){
                 redirect(base_url('admin/categoria'));
             } else {
                 echo 'Houve um erro no sistema!';

@@ -86,24 +86,24 @@ class Authors_model extends CI_Model {
      *
      * @param string $name The author's name.
      * @param string $email The author's email.
-     * @param string $history The author's history.
+     * @param string $historic The author's history.
      * @param string $username The author's username.
      * @param string $password The author's password.
      * @return bool True if the insertion is successful, False otherwise.
     */
     public function add_authors(
-        $nome,
+        $name,
         $email,
-        $historico,
+        $historic,
         $user,
-        $senha
+        $password
     ) {
         $data = [
-            'nome'=> $nome,
+            'nome'=> $name,
             'email'=> $email,
-            'historico'=> $historico,
+            'historico'=> $historic,
             'user'=> $user,
-            'senha'=> md5($senha)
+            'senha'=> md5($password)
         ];
         
         return $this->db->insert('usuario', $data);
@@ -168,19 +168,19 @@ class Authors_model extends CI_Model {
      * @return bool Returns true if the editing is successful, false otherwise.
     */
     public function edit_user(
-        $nome,
+        $name,
         $email,
-        $historico,
+        $historic,
         $user,
-        $senha,
+        $password,
         $id
     ) {
         $data = [
-            'nome'=> $nome,
+            'nome'=> $name,
             'email'=> $email,
-            'historico'=> $historico,
+            'historico'=> $historic,
             'user'=> $user,
-            'senha'=> md5($senha),
+            'senha'=> md5($password),
         ];
         $this->db->where("md5(id)", $id);
 
