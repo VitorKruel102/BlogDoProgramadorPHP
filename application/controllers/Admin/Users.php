@@ -163,7 +163,7 @@ class Users extends CI_Controller {
             'upload_path'=> './assets/Home/img/users',
             'allowed_types'=> 'jpg',
             'file_name'=> "$id.jpg",
-            "overwrite"=> TRUE,
+            'overwrite'=> TRUE,
         ];
         $this->load->library('upload', $config_upload);
 

@@ -7,6 +7,7 @@ class LibraryForm {
     public $criandoFormulario;
     public $set_rules;
     public $condicaoValidacao;
+    public $criandoFormularioFotos;
 
     public function __construct() {
         $this->introducao = '
@@ -95,6 +96,62 @@ class LibraryForm {
                     echo "Houve um erro no sistema!";
                 }
             }
+        ';
+    }
+
+    public function set_CriandoFormularioFotos() {
+        $this->criandoFormularioFotos = '
+            Para criar um formulário de envio de uma imagen, vamos precisar
+            alterar um pouco a estrutura de formulário:
+            index.php:
+                <?= form_open_multipart("admin/users/new_photo/".md5($user->id)) ?>   --> Direciona para o método que irá validar a foto
+                <div class="form-group">
+                    <?= form_upload(                                                  --> Direciona os atributos do input
+                        array(
+                            "name"=> "userfile",                                      --> userfile é OBRIGATORIO
+                            "id"=> "userfile",                                        --> userfile é OBRIGATORIO
+                            "class"=> "form-control",
+                        )
+                    ) ?>
+                </div>
+                <div class="form-group">
+                    <?= form_submit(
+                        array(
+                            "name"=> "btn_adicionar",
+                            "id"=> "btn_adicionar",
+                            "class"=> "btn btn-default",
+                            "value"=> "Adicionar nova imagem",
+                        )
+                    ) ?>
+                </div>
+            <?= form_close() ?>
+
+            Controller: 
+                $config_upload = [
+                    "upload_path"=> "./assets/Home/img/users",  -> Aonde será salvo as imagens;
+                    "allowed_types"=> "jpg",                    -> Tipo de imagens permitidas;
+                    "file_name"=> "$id.jpg",                    -> Como será os nomes dos arquivos;
+                    "overwrite"=> TRUE,                         -> Utilizar sempre True para reescrever a imagem quando o usuario altera-la;
+                ];
+                $this->load->library("upload", $config_upload); 
+
+                if (!$this->upload->do_upload()) {               -> Analisae fez ou não o upload
+                    echo $this->upload->display_errors();        -> Exibe os erros
+                } else {
+                    $config_img = [
+                        "source_image"=> "./assets/Home/img/users/$id.jpg",             -> Chama a imagem
+                        "create_thumb"=> FALSE,                                         -> Crie uma thumb
+                        "width"=> 200,
+                        "height"=> 200,
+                    ];
+                    $this->load->library("image_lib", $config_img);
+        
+                    if ($this->image_lib->resize()) {                                   -> Analise se houve ou não o ajuste na imagem
+                        redirect(base_url("admin/usuarios/alterar/$id"));
+                    } else {
+                        echo $this->image_lib->display_errors();                        -> Exibe os erros
+                    }
+                }
         ';
     }
 }
